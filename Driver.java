@@ -1,7 +1,5 @@
 import java.util.*;
-import java.util.LinkedList;
-import java.util.ArrayList;
-//I G E T F I V E E X T R A P O I N T S 
+//By using two different stacks you can create a queue as seen in my program
 public class Driver {
 
 	public static void main(String[] args) {
@@ -10,54 +8,48 @@ public class Driver {
 		
 		new_instance.run();
 	}
+	private static void run() {
 	
-	private static void run(){
-		
-		String input = "O L F * I * T S R * * * N I * * * T A * S * * * T U * *"; 
-		
-		decodeString(input);
-			
-	}
-	public static void decodeString(String _input) {
-		
-		char[] encoded_input = _input.toCharArray();
-		
-		ArrayList<Character> decoded_output = new ArrayList();
-		
-		Deque<Character> stack = new ArrayDeque<Character>();
-		
-		for(int i = 0; i < _input.length(); i++) {
-			
-			if(encoded_input[i] != ' ') {
-				
-				if(encoded_input[i] != '*') {
-					
-					stack.push(encoded_input[i]);
-					
-				}
-				else if(encoded_input[i] == '*') {
-					
-					decoded_output.add(stack.pop());
-					
-					
-				}
-				
-			}
-		}
-		for (int i=0; i<decoded_output.size(); i++) 
-            System.out.print(decoded_output.get(i)+" ");
-		
-		
-	}
+	String raw_input = "4 6 2 3 8 9";
 	
-
-
+	String[] integerStrings = raw_input.split(" "); 
+	
+	int[] integers = new int[integerStrings.length]; 
+	
+	for (int i = 0; i < integers.length; i++)
+	    integers[i] = Integer.parseInt(integerStrings[i]); 
+	
+	Deque<Integer> firstPass = new ArrayDeque<Integer>();
+	
+	Deque<Integer> secondPass= new ArrayDeque<Integer>();
+	
+	ArrayList<Integer> decoded_output = new ArrayList();
+	
+	
+	for (int i = 0; i < integers.length; i++)
+		firstPass.push(integers[i]);
+	
+	for (int i = 0; i < integers.length; i++)
+		secondPass.push(firstPass.pop());
+	
+	for (int i = 0; i < integers.length; i++) 
+		 decoded_output.add(secondPass.pop());
+	
+	System.out.print("Enter a series of integers, separated by spaces: ");
+	
+	for(int i = 0; i < integers.length; i++) 
+		 System.out.print(decoded_output.get(i)+" ");
+	
+	System.out.println();
+	
+	for(int i = 0; i < integers.length; i++) 
+		 System.out.println(decoded_output.get(i)+" ");
+	
+	
+	
+	
+	}
 }
-
-
-
-
-
 //__       __  __    __                __                  __  __           _____                                         
 ///  \     /  |/  |  /  |              /  |                /  |/  |         /     |                                        
 //$$  \   /$$ |$$/  _$$ |_     _______ $$ |____    ______  $$ |$$ |         $$$$$ |  ______   _______    ______    _______ 
@@ -67,3 +59,4 @@ public class Driver {
 //$$ |$$$/ $$ |$$ |  $$ |/  |$$ \_____ $$ |  $$ |$$$$$$$$/ $$ |$$ |      $$ \__$$ |$$ \__$$ |$$ |  $$ |$$$$$$$$/  $$$$$$  |
 //$$ | $/  $$ |$$ |  $$  $$/ $$       |$$ |  $$ |$$       |$$ |$$ |      $$    $$/ $$    $$/ $$ |  $$ |$$       |/     $$/ 
 //$$/      $$/ $$/    $$$$/   $$$$$$$/ $$/   $$/  $$$$$$$/ $$/ $$/        $$$$$$/   $$$$$$/  $$/   $$/  $$$$$$$/ $$$$$$$/
+
