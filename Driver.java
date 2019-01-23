@@ -19,21 +19,15 @@ public class Driver {
 	for (int i = 0; i < integers.length; i++)
 	    integers[i] = Integer.parseInt(integerStrings[i]); 
 	
-	Deque<Integer> firstPass = new ArrayDeque<Integer>();
-	
-	Deque<Integer> secondPass= new ArrayDeque<Integer>();
+	Queue<Integer> queue_stack = new ArrayDeque<Integer>();
 	
 	ArrayList<Integer> decoded_output = new ArrayList();
 	
-	
-	for (int i = 0; i < integers.length; i++)
-		firstPass.push(integers[i]);
-	
-	for (int i = 0; i < integers.length; i++)
-		secondPass.push(firstPass.pop());
+	for (int i = 0; i < integers.length; i++) 
+		queue_stack.add(integers[i]);
 	
 	for (int i = 0; i < integers.length; i++) 
-		 decoded_output.add(secondPass.pop());
+		decoded_output.add(queue_stack.remove());
 	
 	System.out.print("Enter a series of integers, separated by spaces: ");
 	
